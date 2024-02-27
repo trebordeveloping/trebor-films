@@ -8,8 +8,15 @@ import {
 } from 'react-router-dom';
 import './index.css';
 
+import Layout from "./components/Layout";
+
 const router = createBrowserRouter(createRoutesFromElements(
-  <Route path="/" element={<h1>hi</h1>} />
+  <Route path="/" element={<Layout />}>
+    <Route index element={<h1>Home</h1>} />
+    <Route path="films" element={<h1>Films</h1>} />
+    <Route path="about" element={<h1>About</h1>} />
+    <Route path="account" element={<h1>Account</h1>} />
+  </Route>
 ))
 
 function App() {
