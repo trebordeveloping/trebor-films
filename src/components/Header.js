@@ -9,9 +9,10 @@ export default function Header() {
         fontWeight: "bold",
         textDecoration: "underline",
     }
+
     return (
         <header>
-            <Link className="site-logo" to="/">TreborFilms</Link>
+            <Link className="site-logo" to="/">Trebor<span style={{color: "#00FF00"}}>Films</span></Link>
             <nav>
                 <NavLink
                     to="films"
