@@ -3,7 +3,9 @@ import {
     useLoaderData,
 } from "react-router-dom";
 
+import "./Films.css";
 import { getFilmData } from "../data";
+import FilmCard from "../components/FilmCard";
 
 export function loader() {
     return getFilmData()
@@ -15,13 +17,14 @@ export default function Films() {
     console.log(filmData);
 
     const filmElements = filmData.map(film => (
-        <p>{JSON.stringify(film)}</p>
+        <FilmCard data={film} />
     ))
 
     return (
         <>
-            <h1>Film component</h1>
-            {filmElements}
+            <div className="films--container">
+                {filmElements}
+            </div>
         </>
     )
 }

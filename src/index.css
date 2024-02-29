@@ -2,6 +2,7 @@ body, html {
   margin: 0;
   padding: 0;
   background-color: #1E1E1E;
+  font-family: Poppins;
 }
 
 body {
@@ -15,4 +16,9 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+main {
+  padding: 20px;
+  font-family: Poppins;
 }

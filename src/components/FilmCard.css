@@ -1,0 +1,9 @@
+.card--container {
+    display: flex;
+    flex-direction: column;
+    width: 150px;
+}
+
+.card--poster {
+    width: 100%,
+}
