@@ -5,4 +5,8 @@ footer {
     flex-direction: row;
     justify-content: center;
     color: #e1e1e1;
+
+    position: absolute;
+    bottom: 0;
+    width: 100%;
 }

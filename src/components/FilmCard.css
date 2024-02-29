@@ -4,10 +4,14 @@
     width: 150px;
 }
 
+.card--container:hover {
+    width: 175px;
+}
+
 .card--poster {
     width: 100%,
 }
 
 .card--title {
-    
+
 }
