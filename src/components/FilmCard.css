@@ -6,6 +6,7 @@
 
 .card--container:hover {
     width: 175px;
+    cursor: pointer;
 }
 
 .card--poster {
@@ -13,5 +14,5 @@
 }
 
 .card--title {
-
+    text-decoration: none;
 }

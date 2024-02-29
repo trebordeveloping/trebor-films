@@ -1,13 +1,14 @@
 import React from "react";
 import {
+    Link,
     useLoaderData,
     defer,
     Await,
 } from "react-router-dom";
 
 import "./Films.css";
-import { getFilmData } from "../data";
-import FilmCard from "../components/FilmCard";
+import { getFilmData } from "../../data";
+import FilmCard from "../../components/FilmCard";
 
 export function loader() {
     return defer({ films: getFilmData() })
@@ -16,12 +17,16 @@ export function loader() {
 export default function Films() {
 
     const dataPromise = useLoaderData();
-
     
     function renderFilmElements(films) {
         
         const filmElements = films.map(film => (
-            <FilmCard data={film} />
+            <Link
+                to={film.Title}
+                style={{textDecoration: 'none', color: '#FFFFFF'}}
+                >
+                <FilmCard data={film} />
+            </Link>
         ))
 
         return (
