@@ -14,7 +14,7 @@ export default function Account() {
 
     return (
         <>
-            <nav className="account--nav">
+            <nav style={{marginBottom: '10px'}}>
                 <NavLink
                     to="."
                     end

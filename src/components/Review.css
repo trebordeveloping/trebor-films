@@ -1,0 +1,37 @@
+.review--container {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    background-color: #101010;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.review--poster {
+    height: 300px;
+}
+
+.review--info {
+    display: flex;
+    flex-direction: column;
+}
+
+.review--info > h1 {
+    margin-block: 10px;
+    font-style: italic;
+}
+
+.review--info > div {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+.review--info > div > h2 {
+    font-size: 16px;
+    margin: 0 0 15px 0;
+}
+
+.review--info > p {
+    margin: 0;
+}

@@ -37,7 +37,7 @@ export function reviews() {
                 "Type": "movie",
                 "Poster": "https://m.media-amazon.com/images/M/MV5BN2U1YzdhYWMtZWUzMi00OWI1LWFkM2ItNWVjM2YxMGQ2MmNhXkEyXkFqcGdeQXVyNjU0OTQ0OTY@._V1_SX300.jpg"
             },
-            date: new Date().getDate(),
+            date: new Date().toLocaleDateString(),
             rating: 5,
             description: "Jake sheee",
         }
