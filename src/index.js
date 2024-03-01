@@ -14,6 +14,7 @@ import Films, { loader as filmsLoader } from './pages/Films/Films';
 import FilmDetail from './pages/Films/FilmDetail';
 import Account from "./pages/Account/Account";
 import Favourites, { loader as favouritesLoader } from './pages/Account/Favourites';
+import Reviews, { loader as reviewsLoader } from './pages/Account/Reviews';
 
 const router = createBrowserRouter(createRoutesFromElements(
   <Route path="/" element={<Layout />}>
@@ -26,7 +27,7 @@ const router = createBrowserRouter(createRoutesFromElements(
 
     <Route path="account" element={<Account />}>
       <Route index element={<Favourites />} loader={favouritesLoader} />
-      <Route path="reviews" element={<h1>reviews go here</h1>} />
+      <Route path="reviews" element={<Reviews />} loader={reviewsLoader} />
       <Route path="profile" element={<h1>profile info goes here</h1>} />
     </Route>
 

@@ -7,11 +7,11 @@ import {
 } from "react-router-dom";
 
 import "./Films.css";
-import { getFilmData } from "../../data";
+import { getFilms } from "../../api";
 import FilmCard from "../../components/FilmCard";
 
 export function loader() {
-    return defer({ films: getFilmData() })
+    return defer({ films: getFilms() })
 }
 
 export default function Films() {

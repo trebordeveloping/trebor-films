@@ -1,4 +1,4 @@
-export function getFilmData() {
+export function films() {
     const data = [
                 {
                     "Title": "Cha Cha Real Smooth",
@@ -24,4 +24,23 @@ export function getFilmData() {
     ];
 
     return data;
+}
+
+export function reviews() {
+    const reviews = [
+        {
+            id: '2bkh34k',
+            film: {
+                "Title": "Nightcrawler",
+                "Year": "2014",
+                "imdbID": "tt2872718",
+                "Type": "movie",
+                "Poster": "https://m.media-amazon.com/images/M/MV5BN2U1YzdhYWMtZWUzMi00OWI1LWFkM2ItNWVjM2YxMGQ2MmNhXkEyXkFqcGdeQXVyNjU0OTQ0OTY@._V1_SX300.jpg"
+            },
+            date: new Date().getDate(),
+            rating: 5,
+            description: "Jake sheee",
+        }
+    ]
+    return reviews
 }
