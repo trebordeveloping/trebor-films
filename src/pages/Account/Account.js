@@ -9,7 +9,7 @@ export default function Account() {
     const activeStyle = {
         fontWeight: "bold",
         textDecoration: "underline",
-        color: "#AFAFAF",
+        color: "#00FF00",
     }
 
     return (

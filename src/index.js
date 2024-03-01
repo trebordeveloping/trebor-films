@@ -13,6 +13,7 @@ import About from './pages/About';
 import Films, { loader as filmsLoader } from './pages/Films/Films';
 import FilmDetail from './pages/Films/FilmDetail';
 import Account from "./pages/Account/Account";
+import Favourites, { loader as favouritesLoader } from './pages/Account/Favourites';
 
 const router = createBrowserRouter(createRoutesFromElements(
   <Route path="/" element={<Layout />}>
@@ -24,7 +25,7 @@ const router = createBrowserRouter(createRoutesFromElements(
     <Route path="films/:title" element={<FilmDetail />} />
 
     <Route path="account" element={<Account />}>
-      <Route index element={<h1>favourite films go here</h1>} />
+      <Route index element={<Favourites />} loader={favouritesLoader} />
       <Route path="reviews" element={<h1>reviews go here</h1>} />
       <Route path="profile" element={<h1>profile info goes here</h1>} />
     </Route>

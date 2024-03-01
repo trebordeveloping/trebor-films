@@ -21,8 +21,10 @@ code {
 main {
   padding: 20px;
   font-family: Poppins;
+  color: #FFFFFF;
 }
 
 a {
   text-decoration: none;
+  color: #FFFFFF;
 }

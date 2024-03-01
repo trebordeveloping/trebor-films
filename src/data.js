@@ -1,7 +1,5 @@
 export function getFilmData() {
-    return new Promise((resolve) => {
-        setTimeout(() => {
-            const data = [
+    const data = [
                 {
                     "Title": "Cha Cha Real Smooth",
                     "Year": "2022",
@@ -23,8 +21,7 @@ export function getFilmData() {
                     "Type": "movie",
                     "Poster": "https://m.media-amazon.com/images/M/MV5BMTYxMjk0NDg4Ml5BMl5BanBnXkFtZTgwODcyNjA5OTE@._V1_SX300.jpg"
                 },
-            ];
-            resolve(data);
-        }, 1000); // 1000 milliseconds = 1 second
-    });
+    ];
+
+    return data;
 }
