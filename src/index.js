@@ -9,7 +9,7 @@ import {
 import './index.css';
 
 import Layout from "./components/Layout";
-import Home from "./pages/Home";
+import Home, { action as homeAction} from "./pages/Home";
 import About from './pages/About';
 import Films, { loader as filmsLoader } from './pages/Films/Films';
 import FilmDetail from './pages/Films/FilmDetail';
@@ -20,7 +20,7 @@ import Reviews, { loader as reviewsLoader } from './pages/Account/Reviews';
 const router = createBrowserRouter(createRoutesFromElements(
   <Route path="/" element={<Layout />}>
 
-    <Route index element={<Home />} />
+    <Route index element={<Home />} action={homeAction} />
     <Route path="about" element={<About />} />
 
     <Route path="films" element={<Films />} loader={filmsLoader} />
