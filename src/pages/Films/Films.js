@@ -7,18 +7,20 @@ import {
 } from "react-router-dom";
 
 import "./Films.css";
-import { getFilms } from "../../api";
+import { getFilmsBySearch } from "../../api";
 import FilmCard from "../../components/FilmCard";
 
 export function loader() {
-    return defer({ films: getFilms() })
+    return defer({ films: getFilmsBySearch("harry%20potter") })
 }
 
 export default function Films() {
 
     const dataPromise = useLoaderData();
     
-    function renderFilmElements(films) {
+    function renderFilmElements(searchResult) {
+
+        const films = searchResult.Search;
         
         const filmElements = films.map(film => (
             <Link
