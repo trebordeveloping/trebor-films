@@ -5,6 +5,7 @@ import {
     Await
 } from "react-router-dom"
 
+import "./Favourites.css";
 import { getFavourites } from "../../api";
 import FilmCard from "../../components/FilmCard";
 
@@ -23,9 +24,9 @@ export default function Favourites() {
         ))
 
         return (
-            <>
+            <div className="favourites--container">
                 {favouriteElements}
-            </>
+            </div>
         )
     }
 
