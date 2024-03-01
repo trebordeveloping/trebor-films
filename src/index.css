@@ -22,6 +22,8 @@ main {
   padding: 20px;
   font-family: Poppins;
   color: #FFFFFF;
+
+  min-height: 70vh;
 }
 
 a {
