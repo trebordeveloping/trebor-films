@@ -9,6 +9,7 @@ import {
 import './index.css';
 
 import Layout from "./components/Layout";
+import Home from "./pages/Home";
 import About from './pages/About';
 import Films, { loader as filmsLoader } from './pages/Films/Films';
 import FilmDetail from './pages/Films/FilmDetail';
@@ -19,7 +20,7 @@ import Reviews, { loader as reviewsLoader } from './pages/Account/Reviews';
 const router = createBrowserRouter(createRoutesFromElements(
   <Route path="/" element={<Layout />}>
 
-    <Route index element={<h1>Home</h1>} />
+    <Route index element={<Home />} />
     <Route path="about" element={<About />} />
 
     <Route path="films" element={<Films />} loader={filmsLoader} />
