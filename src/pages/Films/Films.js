@@ -37,7 +37,7 @@ export default function Films() {
         const filmElements = films.map(film => (
             <Link
                 key={film.imdbID}
-                to={film.Title}
+                to={film.imdbID}
                 state={{
                     search: `?${searchParams.toString()}`,
                 }}

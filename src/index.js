@@ -24,7 +24,7 @@ const router = createBrowserRouter(createRoutesFromElements(
     <Route path="about" element={<About />} />
 
     <Route path="films" element={<Films />} loader={filmsLoader} />
-    <Route path="films/:title" element={<FilmDetail />} />
+    <Route path="films/:id" element={<FilmDetail />} />
 
     <Route path="account" element={<Account />}>
       <Route index element={<Favourites />} loader={favouritesLoader} />
