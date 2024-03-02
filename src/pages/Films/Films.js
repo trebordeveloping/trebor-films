@@ -31,7 +31,12 @@ export default function Films() {
 
     
     function renderFilmElements(searchResult) {
-        if (searchResult === null) return <h1>Empty search</h1>
+        if (searchResult === null)
+            return <h2 style={{color: "#FF0000"}}>Search for a film</h2>
+        if (searchResult.Response === "False")
+            return <h2 style={{color: "#FF0000"}}>{searchResult.Error}</h2>
+
+        console.log(searchResult)
         const films = searchResult.Search;
         
         const filmElements = films.map(film => (
