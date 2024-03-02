@@ -6,7 +6,7 @@ export default function Review(props) {
 
     return (
         <div className="review--container">
-            <img className="review--poster" src={props.data.film.Poster}></img>
+            <img className="review--poster" src={props.data.film.Poster} alt="Film poster"></img>
             <section className="review--info">
                 <h1 className="review--film-title">{props.data.film.Title}</h1>
                 <div>
