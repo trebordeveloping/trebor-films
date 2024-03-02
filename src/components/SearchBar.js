@@ -8,21 +8,21 @@ export default function SearchBar() {
 
     return (
         <Form
-                method="post"
-                className="search-bar--container"
-                replace
+            method="post"
+            replace
+            className="search-bar--container"
             >
-                <input
-                    name="search"
-                    type="text"
-                    placeholder="search..."
-                    className="search-bar"
+            <input
+                name="search"
+                type="text"
+                placeholder="search..."
+                className="search-bar"
                 />
-                <button
-                    className="search-button"
+            <button
+                className="search-button"
                 >
-                    <img src={searchIcon} alt="search icon" className="search-icon"></img>
-                </button>
-            </Form>
+                <img src={searchIcon} alt="search icon" className="search-icon"></img>
+            </button>
+        </Form>
     )
 }
