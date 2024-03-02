@@ -4,6 +4,7 @@ import {
     useLoaderData,
     defer,
     Await,
+    useSearchParams,
 } from "react-router-dom";
 
 import "./Films.css";
@@ -25,7 +26,9 @@ export function loader({ request }) {
 
 export default function Films() {
 
+    const [searchParams, setSearchParams] = useSearchParams();
     const dataPromise = useLoaderData();
+
     
     function renderFilmElements(searchResult) {
         if (searchResult === null) return <h1>Empty search</h1>
@@ -35,7 +38,9 @@ export default function Films() {
             <Link
                 key={film.imdbID}
                 to={film.Title}
-                style={{textDecoration: 'none', color: '#FFFFFF'}}
+                state={{
+                    search: `?${searchParams.toString()}`,
+                }}
                 >
                 <FilmCard data={film} />
             </Link>
