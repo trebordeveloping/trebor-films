@@ -6,6 +6,8 @@ import {
     useActionData
 } from "react-router-dom";
 
+import SearchBar from "../components/SearchBar";
+
 export async function action({ request }) {
     const formData = await request.formData();
     const search =  formData.get("search");
@@ -29,6 +31,8 @@ export default function Home() {
     return (
         <div className="home--page">
             <h1>Home</h1>
+
+            <SearchBar />
             
             <Form
                 method="post"
