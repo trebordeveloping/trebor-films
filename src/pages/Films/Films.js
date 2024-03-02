@@ -26,7 +26,7 @@ export function loader({ request }) {
 
 export default function Films() {
 
-    const [searchParams, setSearchParams] = useSearchParams();
+    const [searchParams] = useSearchParams();
     const dataPromise = useLoaderData();
 
     
