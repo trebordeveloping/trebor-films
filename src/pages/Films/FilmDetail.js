@@ -4,6 +4,13 @@ import {
     useLocation,
 } from "react-router-dom";
 
+export function loader({ params }) {
+    
+    const filmId = params.id;
+    console.log(filmId);
+    return null
+}
+
 export default function FilmDetail() {
 
     const location = useLocation();

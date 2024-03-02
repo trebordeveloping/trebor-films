@@ -12,7 +12,7 @@ import Layout from "./components/Layout";
 import Home, { action as homeAction} from "./pages/Home";
 import About from './pages/About';
 import Films, { loader as filmsLoader } from './pages/Films/Films';
-import FilmDetail from './pages/Films/FilmDetail';
+import FilmDetail, { loader as filmDetailLoader } from './pages/Films/FilmDetail';
 import Account from "./pages/Account/Account";
 import Favourites, { loader as favouritesLoader } from './pages/Account/Favourites';
 import Reviews, { loader as reviewsLoader } from './pages/Account/Reviews';
@@ -24,7 +24,7 @@ const router = createBrowserRouter(createRoutesFromElements(
     <Route path="about" element={<About />} />
 
     <Route path="films" element={<Films />} loader={filmsLoader} />
-    <Route path="films/:id" element={<FilmDetail />} />
+    <Route path="films/:id" element={<FilmDetail />} loader={filmDetailLoader} />
 
     <Route path="account" element={<Account />}>
       <Route index element={<Favourites />} loader={favouritesLoader} />
