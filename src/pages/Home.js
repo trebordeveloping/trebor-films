@@ -11,10 +11,9 @@ import SearchBar from "../components/SearchBar";
 export async function action({ request }) {
     const formData = await request.formData();
     const search =  formData.get("search");
+    if (!search) return null // early return if search is empty
 
-    const pathname = new URL(request.url)
-        .searchParams.get("redirectTo") || "/films"
-    
+    const pathname = "/films";
     const searchParam = search ? `?search=${encodeURIComponent(search)}` : '';
     
     try {
