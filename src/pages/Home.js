@@ -1,11 +1,10 @@
 import React from "react";
 import {
-    useNavigation,
-    Form,
     redirect,
     useActionData
 } from "react-router-dom";
 
+import "./Home.css";
 import SearchBar from "../components/SearchBar";
 
 export async function action({ request }) {
@@ -29,7 +28,6 @@ export default function Home() {
 
     return (
         <div className="home--page">
-            <h1>Home</h1>
 
             <SearchBar />
 
