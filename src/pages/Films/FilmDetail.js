@@ -6,6 +6,8 @@ import {
     defer,
     Await,
 } from "react-router-dom";
+
+import "./FilmDetail.css";
 import { getFilmById } from "../../api";
 
 export function loader({ params }) {
@@ -30,11 +32,26 @@ export default function FilmDetail() {
                     >
                     &larr; Back to films
                 </Link>
-                <div className="film-detail--container">
-        
-                    <h1>{film.Title}</h1>
-                    <p>{JSON.stringify(film)}</p>
+                <div className="detail--container">
+                    <img src={film.Poster} alt="Film poster" className="detail--poster"></img>
+                    <div className="detail--info">
+                        <h1>{film.Title}</h1>
+                        <h2>
+                            {film.Year + " | "}
+                            {film.Type === "series" ?
+                            film.totalSeasons + " season" + (film.totalSeasons>1 ? "s" : "") + " | "
+                            : ""}
+                            {film.Runtime}
+                        </h2>
+                        <h2>Genre: <span style={{fontWeight: 'normal'}}>{film.Genre}</span></h2>
+                        <h2>Director: <span style={{fontWeight: 'normal'}}>{film.Director}</span></h2>
+                        <h2>Writer: <span style={{fontWeight: 'normal'}}>{film.Writer}</span></h2>
+                        <h2>Actors: <span style={{fontWeight: 'normal'}}>{film.Actors}</span></h2>
+                        <h2>IMDb: <span style={{fontWeight: 'normal'}}>{film.imdbRating}</span></h2>
+                        <p>{film.Plot}</p>
+                    </div>
                 </div>
+                {/* <p>{JSON.stringify(film)}</p> */}
             </>
         )
     }
