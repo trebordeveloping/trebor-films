@@ -33,18 +33,6 @@ export default function Home() {
             <h1>Home</h1>
 
             <SearchBar />
-            
-            <Form
-                method="post"
-                replace
-            >
-                <input
-                    name="search"
-                    type="text"
-                    placeholder="search..."
-                />
-                <button>x</button>
-            </Form>
 
             <p>{errorMessage}</p>
         </div>
