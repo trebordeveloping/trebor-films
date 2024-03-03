@@ -20,7 +20,7 @@ export default function Favourites() {
     function renderFavouriteElements(favourites) {
 
         const favouriteElements = favourites.map(favourite => (
-            <FilmCard data={favourite} />
+            <FilmCard key={favourite.imdbID} data={favourite} />
         ))
 
         return (
