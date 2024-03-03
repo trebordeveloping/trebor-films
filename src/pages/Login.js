@@ -1,5 +1,6 @@
 import React from "react";
 import {
+    redirect,
     Form,
     useActionData,
     useLoaderData,
@@ -7,6 +8,7 @@ import {
 } from "react-router-dom";
 
 import "./Login.css";
+import { loginUser } from "../api";
 
 export function loader({ request }) {
     return new URL(request.url).searchParams.get("message");
@@ -16,11 +18,11 @@ export async function action({ request }) {
     const formData = await request.formData();
     const username = formData.get("username");
     const password = formData.get("password");
-    const pathname = newURl(request.url)
+    const pathname = new URL(request.url)
         .searchParams.get("redirectTo") || "/account"
     
     try {
-        const data = await loginUser({ email, password });
+        const data = await loginUser({ username, password });
         localStorage.setItem("loggedin", true);
         return redirect(pathname)
     } catch(err) {
