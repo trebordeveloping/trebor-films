@@ -32,6 +32,15 @@ export default function Header() {
                 >
                     Account
                 </NavLink>
+                {true ? 
+                    <NavLink
+                        to="login"
+                        style={({isActive}) => isActive ? activeStyle : null}
+                    >
+                        Login
+                    </NavLink>
+                    : <h2>Logout</h2>
+                }
             </nav>
         </header>
     )
