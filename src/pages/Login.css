@@ -3,7 +3,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-
+    gap: 10px;
     height: 70vh;
 }
 
@@ -42,4 +42,8 @@
 
 .login-form > button:hover {
     color: #00FF00;
+}
+
+h1, h2, h3 {
+    margin: 0px;
 }
