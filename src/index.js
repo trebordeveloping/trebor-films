@@ -16,7 +16,7 @@ import FilmDetail, { loader as filmDetailLoader } from './pages/Films/FilmDetail
 import Account from "./pages/Account/Account";
 import Favourites, { loader as favouritesLoader } from './pages/Account/Favourites';
 import Reviews, { loader as reviewsLoader } from './pages/Account/Reviews';
-import Login from './pages/Login';
+import Login, { loader as loginLoader, action as loginAction } from './pages/Login';
 import Error from './components/Error';
 
 const router = createBrowserRouter(createRoutesFromElements(
@@ -38,7 +38,10 @@ const router = createBrowserRouter(createRoutesFromElements(
       errorElement={<Error />}
     />
 
-    <Route path="login" element={<Login />} />
+    <Route
+      path="login" element={<Login />}
+      loader={loginLoader} action={loginAction}
+    />
 
     <Route path="account" element={<Account />}>
       <Route index element={<Favourites />} loader={favouritesLoader} />
