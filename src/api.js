@@ -18,8 +18,6 @@ export async function loginUser(creds) {
 
     const data = res; // await res.json()
 
-    console.log(data);
-
     if (!res.ok) {
         throw {
             message: data.message,
