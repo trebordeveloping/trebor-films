@@ -10,15 +10,8 @@ export default function Header() {
         textDecoration: "underline",
     }
 
-    const [loggedIn, setLoggedIn] = React.useState("");
-
-    React.useEffect(() => {
-        setLoggedIn("true" === localStorage.getItem("loggedin"))
-    }, [])
-
     function handleLogout() {
-        setLoggedIn(false);
-        localStorage.setItem("loggedin", "false")
+        localStorage.removeItem("loggedin")
     }
 
     return (

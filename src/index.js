@@ -13,7 +13,7 @@ import Home, { action as homeAction} from "./pages/Home";
 import About from './pages/About';
 import Films, { loader as filmsLoader } from './pages/Films/Films';
 import FilmDetail, { loader as filmDetailLoader } from './pages/Films/FilmDetail';
-import Account from "./pages/Account/Account";
+import Account, { loader as accountLoader } from "./pages/Account/Account";
 import Favourites, { loader as favouritesLoader } from './pages/Account/Favourites';
 import Reviews, { loader as reviewsLoader } from './pages/Account/Reviews';
 import Login, { loader as loginLoader, action as loginAction } from './pages/Login';
@@ -43,7 +43,7 @@ const router = createBrowserRouter(createRoutesFromElements(
       loader={loginLoader} action={loginAction}
     />
 
-    <Route path="account" element={<Account />}>
+    <Route path="account" element={<Account />} loader={accountLoader}>
       <Route index element={<Favourites />} loader={favouritesLoader} />
       <Route path="reviews" element={<Reviews />} loader={reviewsLoader} />
       <Route path="profile" element={<h1>profile info goes here</h1>} />
