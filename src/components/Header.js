@@ -10,6 +10,17 @@ export default function Header() {
         textDecoration: "underline",
     }
 
+    const [loggedIn, setLoggedIn] = React.useState("");
+
+    React.useEffect(() => {
+        setLoggedIn("true" === localStorage.getItem("loggedin"))
+    }, [])
+
+    function handleLogout() {
+        setLoggedIn(false);
+        localStorage.setItem("loggedin", "false")
+    }
+
     return (
         <header>
             <Link className="site-logo" to="/">Trebor<span style={{color: "#00FF00"}}>Films</span></Link>
@@ -32,15 +43,13 @@ export default function Header() {
                 >
                     Account
                 </NavLink>
-                {true ? 
-                    <NavLink
-                        to="login"
-                        style={({isActive}) => isActive ? activeStyle : null}
-                    >
-                        Login
-                    </NavLink>
-                    : <h2>Logout</h2>
-                }
+                <NavLink
+                    to="login"
+                    style={({isActive}) => isActive ? activeStyle : null}
+                >
+                    Login
+                </NavLink>
+                <button className="log-out--button" onClick={handleLogout}>Log out</button>
             </nav>
         </header>
     )

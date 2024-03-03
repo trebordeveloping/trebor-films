@@ -36,6 +36,10 @@ export default function Login() {
     const message = useLoaderData();
     const navigation = useNavigation();
 
+    if (localStorage.getItem("loggedin") === "true") {
+        return <h2 style={{color: "red"}}>Already logged in.</h2>
+    }
+
     return (
         <div className="login--page">
             <h1>Sign in</h1>
