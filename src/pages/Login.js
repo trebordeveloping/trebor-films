@@ -22,8 +22,8 @@ export async function action({ request }) {
         .searchParams.get("redirectTo") || "/account"
     
     try {
-        const data = await loginUser({ username, password });
-        localStorage.setItem("loggedin", data.ok);
+        await loginUser({ username, password });
+        localStorage.setItem("loggedin", true);
         return redirect(pathname)
     } catch(err) {
         return JSON.parse(err.message).message
