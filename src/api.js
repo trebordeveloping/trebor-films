@@ -19,11 +19,11 @@ export async function loginUser(creds) {
     const data = res; // await res.json()
 
     if (!res.ok) {
-        throw {
+        throw new Error(JSON.stringify({
             message: data.message,
             statusText: res.statusText,
             status: res.status,
-        }
+        }));
     }
 
     return data;
