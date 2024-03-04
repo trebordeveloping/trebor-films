@@ -26,7 +26,7 @@ export async function action({ request }) {
         localStorage.setItem("loggedin", data.ok);
         return redirect(pathname)
     } catch(err) {
-        return err.message
+        return JSON.parse(err.message).message
     }
 }
 
