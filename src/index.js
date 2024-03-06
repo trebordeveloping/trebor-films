@@ -18,6 +18,7 @@ import Favourites, { loader as favouritesLoader } from './pages/Account/Favourit
 import Reviews, { loader as reviewsLoader } from './pages/Account/Reviews';
 import Login, { loader as loginLoader, action as loginAction } from './pages/Login';
 import Error from './components/Error';
+import { AuthProvider } from './contexts/AuthContext';
 
 const router = createBrowserRouter(createRoutesFromElements(
   <Route path="/" element={<Layout />}>
@@ -60,6 +61,8 @@ function App() {
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <App />
+    <AuthProvider>
+      <App />
+    </AuthProvider>
   </React.StrictMode>
 );
