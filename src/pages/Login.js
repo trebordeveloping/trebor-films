@@ -8,7 +8,7 @@ import {
 } from "react-router-dom";
 
 import "./Login.css";
-import { loginUser } from "../api";
+import { loginUser } from "../firebase/auth";
 
 export function loader({ request }) {
     return new URL(request.url).searchParams.get("message");
@@ -16,17 +16,18 @@ export function loader({ request }) {
 
 export async function action({ request }) {
     const formData = await request.formData();
-    const username = formData.get("username");
+    const email = formData.get("email");
     const password = formData.get("password");
     const pathname = new URL(request.url)
         .searchParams.get("redirectTo") || "/account"
     
     try {
-        await loginUser({ username, password });
+        await loginUser({ email, password });
         localStorage.setItem("loggedin", true);
         return redirect(pathname)
     } catch(err) {
-        return JSON.parse(err.message).message
+        console.log(err);
+        return err.message;
     }
 }
 
@@ -56,9 +57,9 @@ export default function Login() {
                 replace
             >
                 <input
-                    name="username"
-                    type="text"
-                    placeholder="Username"
+                    name="email"
+                    type="email"
+                    placeholder="Email"
                 />
                 <input
                     name="password"
