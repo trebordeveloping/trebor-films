@@ -10,6 +10,7 @@ import {
 
 import "./Register.css";
 import { useAuth } from "../../contexts/AuthContext";
+import { registerUser } from "../../firebase/auth";
 
 export async function action({ request }) {
 
@@ -20,7 +21,7 @@ export async function action({ request }) {
         .searchParams.get("redirectTo") || "/account"
     
     try {
-        // throw new Error("dick");
+        await registerUser({ email, password })
         return redirect(pathname);
     } catch(err) {
         console.log(err);
