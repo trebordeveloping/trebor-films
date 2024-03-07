@@ -12,6 +12,7 @@ header {
 nav {
     display: flex;
     flex-direction: row;
+    align-items: center;
     gap: 10px;
 }
 
@@ -24,13 +25,14 @@ nav {
 }
 
 .log-out--button {
-    align-self: center;
     background: none;
     border: solid 1px #FFFFFF;
     border-radius: 2px;
+    padding: 1%;
     font-family: Poppins;
     color: #FFFFFF;
     font-size: 1rem;
     margin: 0;
-    cursor: pointer; 
+    cursor: pointer;
+    text-wrap:nowrap;
 }

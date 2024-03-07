@@ -3,6 +3,7 @@ import { Link, NavLink, redirect } from "react-router-dom";
 
 import "./Header.css";
 import { logoutUser } from "../firebase/auth";
+import { useAuth } from "../contexts/AuthContext";
 
 export default function Header() {
 
@@ -11,10 +12,11 @@ export default function Header() {
         textDecoration: "underline",
     }
 
+    const { isUserLoggedIn } = useAuth();
+
     async function handleLogout() {
         try {
             return await logoutUser();
-            // return redirect('/');
         } catch(err) {
             console.log(err.message);
         }
@@ -42,13 +44,17 @@ export default function Header() {
                 >
                     Account
                 </NavLink>
+                {isUserLoggedIn ?
+                <button className="log-out--button" onClick={handleLogout}>Log out</button>
+                :
                 <NavLink
                     to="login"
-                    style={({isActive}) => isActive ? activeStyle : null}
+                    // style={({isActive}) => isActive ? activeStyle : null}
+                    className="log-out--button"
                 >
                     Login
                 </NavLink>
-                <button className="log-out--button" onClick={handleLogout}>Log out</button>
+                }
             </nav>
         </header>
     )
