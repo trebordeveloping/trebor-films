@@ -7,8 +7,10 @@ import {
 
 import { getReviews } from "../../api";
 import Review from "../../components/Review";
+import { requireAuth } from "../../utils";
 
-export function loader() {
+export async function loader({ request }) {
+    await requireAuth(request);
     return defer({reviews: getReviews()})
 }
 

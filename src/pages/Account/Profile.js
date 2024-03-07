@@ -2,6 +2,12 @@ import React from "react";
 
 import { useAuth } from "../../contexts/AuthContext";
 import { auth } from "../../firebase/firebase-config";
+import { requireAuth } from "../../utils";
+
+export async function loader({ request }) {
+    await requireAuth(request);
+    return null
+}
 
 export default function Profile() {
 

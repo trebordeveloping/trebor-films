@@ -1,7 +1,9 @@
 import React from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, redirect } from "react-router-dom";
 
 import "./Header.css";
+import { logoutUser } from "../firebase/auth";
+import { requireAuth } from "../utils";
 
 export default function Header() {
 
@@ -10,8 +12,13 @@ export default function Header() {
         textDecoration: "underline",
     }
 
-    function handleLogout() {
-        localStorage.removeItem("loggedin")
+    async function handleLogout() {
+        try {
+            await logoutUser();
+            return redirect('/');
+        } catch(err) {
+            console.log(err.message);
+        }
     }
 
     return (

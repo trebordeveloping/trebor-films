@@ -8,8 +8,10 @@ import {
 import "./Favourites.css";
 import { getFavourites } from "../../api";
 import FilmCard from "../../components/FilmCard";
+import { requireAuth } from "../../utils";
 
-export function loader() {
+export async function loader({ request }) {
+    await requireAuth(request);
     return defer({favourites: getFavourites()})
 }
 

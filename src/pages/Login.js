@@ -9,6 +9,7 @@ import {
 
 import "./Login.css";
 import { loginUser } from "../firebase/auth";
+import { useAuth } from "../contexts/AuthContext";
 
 export function loader({ request }) {
     return new URL(request.url).searchParams.get("message");
@@ -23,7 +24,6 @@ export async function action({ request }) {
     
     try {
         await loginUser({ email, password });
-        localStorage.setItem("loggedin", true);
         return redirect(pathname)
     } catch(err) {
         console.log(err);
@@ -37,7 +37,9 @@ export default function Login() {
     const message = useLoaderData();
     const navigation = useNavigation();
 
-    if (localStorage.getItem("loggedin") === "true") {
+    const { isUserLoggedIn } = useAuth();
+
+    if (isUserLoggedIn) {
         return <h2 style={{color: "red"}}>Already logged in.</h2>
     }
 
