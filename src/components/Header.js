@@ -3,7 +3,6 @@ import { Link, NavLink, redirect } from "react-router-dom";
 
 import "./Header.css";
 import { logoutUser } from "../firebase/auth";
-import { requireAuth } from "../utils";
 
 export default function Header() {
 
