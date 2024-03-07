@@ -6,6 +6,7 @@ import {
 } from "react-router-dom";
 
 import { requireAuth } from "../../utils";
+import { useAuth } from "../../contexts/AuthContext";
 
 export async function loader({ request }) {
     await requireAuth(request)
@@ -13,6 +14,11 @@ export async function loader({ request }) {
 }
 
 export default function Account() {
+
+    const { isUserLoggedIn } = useAuth();
+    if (!isUserLoggedIn) {
+        return
+    }
 
     const activeStyle = {
         fontWeight: "bold",

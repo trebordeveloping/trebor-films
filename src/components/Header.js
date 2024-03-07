@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, NavLink, redirect } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 import "./Header.css";
 import { logoutUser } from "../firebase/auth";
