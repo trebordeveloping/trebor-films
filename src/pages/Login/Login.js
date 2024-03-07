@@ -5,11 +5,12 @@ import {
     useActionData,
     useLoaderData,
     useNavigation,
+    Link,
 } from "react-router-dom";
 
 import "./Login.css";
-import { loginUser } from "../firebase/auth";
-import { useAuth } from "../contexts/AuthContext";
+import { loginUser } from "../../firebase/auth";
+import { useAuth } from "../../contexts/AuthContext";
 
 export function loader({ request }) {
     return new URL(request.url).searchParams.get("message");
@@ -77,6 +78,15 @@ export default function Login() {
                     }
                 </button>
             </Form>
+            <section className="register--container">
+                <p>Don't have an account yet?</p>
+                <Link
+                    to="/register"
+                    style={{textDecoration: 'underline'}}
+                >
+                    Create one here
+                </Link>
+            </section>
         </div>
     )
 }

@@ -17,7 +17,8 @@ import Account, { loader as accountLoader } from "./pages/Account/Account";
 import Favourites, { loader as favouritesLoader } from './pages/Account/Favourites';
 import Reviews, { loader as reviewsLoader } from './pages/Account/Reviews';
 import Profile, { loader as profileLoader } from './pages/Account/Profile';
-import Login, { loader as loginLoader, action as loginAction } from './pages/Login';
+import Login, { loader as loginLoader, action as loginAction } from './pages/Login/Login';
+import Register from './pages/Login/Register';
 import Error from './components/Error';
 import { AuthProvider } from './contexts/AuthContext';
 
@@ -44,6 +45,7 @@ const router = createBrowserRouter(createRoutesFromElements(
       path="login" element={<Login />}
       loader={loginLoader} action={loginAction}
     />
+    <Route path="register" element={<Register />} />
 
     <Route path="account" element={<Account />} loader={accountLoader}>
       <Route index element={<Favourites />} loader={favouritesLoader} />
