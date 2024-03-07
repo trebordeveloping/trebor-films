@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
     redirect,
     Form,
@@ -6,6 +6,7 @@ import {
     useLoaderData,
     useNavigation,
     Link,
+    useSearchParams,
 } from "react-router-dom";
 
 import "./Login.css";
@@ -34,14 +35,27 @@ export async function action({ request }) {
 
 export default function Login() {
 
+    const [loginCreds, setLoginCreds] = useState({
+        email: '',
+        password: '',
+    })
+
     const errorMessage = useActionData();
     const message = useLoaderData();
     const navigation = useNavigation();
+    const [searchParams] = useSearchParams();
 
     const { isUserLoggedIn } = useAuth();
 
     if (isUserLoggedIn) {
         return <h2 style={{color: "red"}}>Already logged in.</h2>
+    }
+
+    function handleChange(event) {
+        setLoginCreds(prev => ({
+            ...prev,
+            [event.target.name]: event.target.value,
+        }))
     }
 
     return (
@@ -63,11 +77,15 @@ export default function Login() {
                     name="email"
                     type="email"
                     placeholder="Email"
+                    value={loginCreds.email}
+                    onChange={handleChange}
                 />
                 <input
                     name="password"
                     type="password"
                     placeholder="Password"
+                    value={loginCreds.password}
+                    onChange={handleChange}
                 />
                 <button
                     disabled={navigation.state === "submitting"}
@@ -81,7 +99,10 @@ export default function Login() {
             <section className="register--container">
                 <p>Don't have an account yet?</p>
                 <Link
-                    to="/register"
+                    to={"/register" + (searchParams.get("redirectTo") ?
+                        `?redirectTo=${searchParams.get("redirectTo")}`
+                        : '')
+                    }
                     style={{textDecoration: 'underline'}}
                 >
                     Create one here
