@@ -13,8 +13,8 @@ export default function Header() {
 
     async function handleLogout() {
         try {
-            await logoutUser();
-            return redirect('/');
+            return await logoutUser();
+            // return redirect('/');
         } catch(err) {
             console.log(err.message);
         }

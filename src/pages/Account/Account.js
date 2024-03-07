@@ -2,6 +2,7 @@ import React from "react";
 import {
     Outlet,
     NavLink,
+    Link,
 } from "react-router-dom";
 
 import { requireAuth } from "../../utils";
