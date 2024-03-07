@@ -12,5 +12,7 @@ export async function loginUser(creds) {
 
 export async function logoutUser() {
     await signOut(auth);
-    return window.location.reload();
+    if (window.location.pathname.startsWith("/account")) {
+        return window.location.reload();
+    }
 };
