@@ -92,7 +92,7 @@ export default function Register() {
                 </button>
             </Form>
             <section className="login--container">
-                <p>Already have an account</p>
+                <p>Already registered?</p>
                 <Link
                     to={"/login" + (searchParams.get("redirectTo") ?
                     `?redirectTo=${searchParams.get("redirectTo")}`
