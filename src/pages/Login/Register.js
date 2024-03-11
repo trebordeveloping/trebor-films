@@ -15,13 +15,14 @@ import { registerUser } from "../../firebase/auth";
 export async function action({ request }) {
 
     const formData = await request.formData();
+    const name = formData.get('name');
     const email = formData.get('email');
     const password = formData.get('password');
     const pathname = new URL(request.url)
         .searchParams.get("redirectTo") || "/account"
     
     try {
-        await registerUser({ email, password })
+        await registerUser({ name, email, password })
         return redirect(pathname);
     } catch(err) {
         console.log(err);
@@ -32,6 +33,7 @@ export async function action({ request }) {
 export default function Register() {
 
     const [registerCreds, setRegisterCreds] = useState({
+        name: '',
         email: '',
         password: '',
     })
@@ -68,6 +70,13 @@ export default function Register() {
                 className="register-form"
                 replace
             >
+                <input
+                    name="name"
+                    type="text"
+                    placeholder="Name"
+                    value={registerCreds.name}
+                    onChange={handleChange}
+                />
                 <input
                     name="email"
                     type="email"
