@@ -10,7 +10,6 @@ import { useAuth } from "../../contexts/AuthContext";
 
 export async function loader({ request }) {
     await requireAuth(request)
-    console.log("not account loader redirect")
     return null
 }
 

@@ -10,11 +10,20 @@ import {
 } from "react-router-dom";
 
 import "./Login.css";
+import { auth } from "../../firebase/firebase-config";
 import { loginUser } from "../../firebase/auth";
 import { useAuth } from "../../contexts/AuthContext";
 
 export function loader({ request }) {
-    return new URL(request.url).searchParams.get("message");
+
+    const url = new URL(request.url);
+    const redirectTo = url.searchParams.get("redirectTo") || "/account";
+    const message = url.searchParams.get("message");
+
+    if (auth.currentUser) {
+        return redirect(redirectTo);
+    }
+    return message;
 }
 
 export async function action({ request }) {

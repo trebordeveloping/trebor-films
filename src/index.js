@@ -20,45 +20,48 @@ import Profile, { loader as profileLoader } from './pages/Account/Profile';
 import Login, { loader as loginLoader, action as loginAction } from './pages/Login/Login';
 import Register, { action as registerAction } from './pages/Login/Register';
 import Error from './components/Error';
-import { AuthProvider } from './contexts/AuthContext';
+import { AuthProvider, useAuth } from './contexts/AuthContext';
 
-const router = createBrowserRouter(createRoutesFromElements(
-  <Route path="/" element={<Layout />}>
 
-    <Route index element={<Home />} action={homeAction} />
-    <Route path="about" element={<About />} />
-
-    <Route
-      path="films"
-      element={<Films />}
-      loader={filmsLoader}
-      errorElement={<Error />}
-    />
-    <Route
-      path="films/:id"
-      element={<FilmDetail />}
-      loader={filmDetailLoader}
-      errorElement={<Error />}
-    />
-
-    <Route
-      path="login" element={<Login />}
-      loader={loginLoader} action={loginAction}
-    />
-    <Route path="register" element={<Register />}
-      action={registerAction}
-    />
-
-    <Route path="account" element={<Account />} loader={accountLoader}>
-      <Route index element={<Favourites />} loader={favouritesLoader} />
-      <Route path="reviews" element={<Reviews />} loader={reviewsLoader} />
-      <Route path="profile" element={<Profile />} loader={profileLoader} />
-    </Route>
-
-  </Route>
-))
 
 function App() {
+
+  const router = createBrowserRouter(createRoutesFromElements(
+    <Route path="/" element={<Layout />}>
+  
+      <Route index element={<Home />} action={homeAction} />
+      <Route path="about" element={<About />} />
+  
+      <Route
+        path="films"
+        element={<Films />}
+        loader={filmsLoader}
+        errorElement={<Error />}
+      />
+      <Route
+        path="films/:id"
+        element={<FilmDetail />}
+        loader={filmDetailLoader}
+        errorElement={<Error />}
+      />
+  
+      <Route
+        path="login" element={<Login />}
+        loader={loginLoader} action={loginAction}
+      />
+      <Route path="register" element={<Register />}
+        action={registerAction}
+      />
+  
+      <Route path="account" element={<Account />} loader={accountLoader}>
+        <Route index element={<Favourites />} loader={favouritesLoader} />
+        <Route path="reviews" element={<Reviews />} loader={reviewsLoader} />
+        <Route path="profile" element={<Profile />} loader={profileLoader} />
+      </Route>
+  
+    </Route>
+  ))
+
   return (
     <RouterProvider router={router} />
   )
