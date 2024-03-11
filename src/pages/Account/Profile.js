@@ -13,17 +13,22 @@ export async function loader({ request }) {
 export default function Profile() {
 
     const { currentUser, isUserLoggedIn } = useAuth();
+    console.log(currentUser)
 
     return (
         <div className="profile--page">
+            {currentUser.photoURL ?
+            <img src={currentUser.photoURL} className="profile--picture" alt="Profile avatar"></img> :
             <img src={avatar} className="profile--picture" alt="Profile avatar"></img>
+            }
             <section className="profile--info">
-                <h1>profile shit goes here</h1>
-                <h1 style={{color: 'red'}}>Is logged in: {isUserLoggedIn ? "yes" : "no"}</h1>
+                <h1>Welcome, {currentUser.displayName ? currentUser.displayName : "User"}</h1>
                 <p><strong>Email: </strong>{currentUser.email}</p>
                 <p><strong>User ID: </strong>{currentUser.uid}</p>
                 <br />
-                <h1>Auth user shit</h1>
+                <pre style={{fontSize: "0.5rem", textWrap: 'wrap'}}>{JSON.stringify(currentUser)}</pre>
+                <br />
+                <p style={{color: 'red'}}>{isUserLoggedIn ? "Logged in" : "Not logged in"}</p>
             </section>
         </div>
     )
