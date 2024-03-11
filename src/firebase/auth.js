@@ -22,6 +22,7 @@ export async function registerUser(creds) {
 
     await setDoc(newDocRef, {
         name: creds.name,
+        createdAt: serverTimestamp(),
     });
 
     return newUserCreds;
