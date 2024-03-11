@@ -20,9 +20,7 @@ import Profile, { loader as profileLoader } from './pages/Account/Profile';
 import Login, { loader as loginLoader, action as loginAction } from './pages/Login/Login';
 import Register, { action as registerAction } from './pages/Login/Register';
 import Error from './components/Error';
-import { AuthProvider, useAuth } from './contexts/AuthContext';
-
-
+import { AuthProvider } from './contexts/AuthContext';
 
 function App() {
 

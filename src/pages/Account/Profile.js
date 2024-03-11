@@ -3,7 +3,6 @@ import React from "react";
 import avatar from "../../images/avatar.png";
 import "./Profile.css";
 import { useAuth } from "../../contexts/AuthContext";
-import { auth } from "../../firebase/firebase-config";
 import { requireAuth } from "../../utils";
 
 export async function loader({ request }) {
