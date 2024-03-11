@@ -9,6 +9,7 @@ import "./Favourites.css";
 import { getFavourites } from "../../api";
 import FilmCard from "../../components/FilmCard";
 import { requireAuth } from "../../utils";
+import { addFavourite } from "../../firebase/auth";
 
 export async function loader({ request }) {
     await requireAuth(request);
@@ -22,7 +23,10 @@ export default function Favourites() {
     function renderFavouriteElements(favourites) {
 
         const favouriteElements = favourites.map(favourite => (
-            <FilmCard key={favourite.imdbID} data={favourite} />
+            <div key={favourite.imdbID}>
+                <FilmCard key={favourite.imdbID} data={favourite} />
+                <button onClick={() => addFavourite(favourite)}>add to favourites</button>
+            </div>
         ))
 
         return (

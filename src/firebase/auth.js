@@ -7,6 +7,7 @@ import {
 import {
     collection,
     doc,
+    serverTimestamp,
     setDoc,
 } from "firebase/firestore";
 
@@ -37,3 +38,13 @@ export async function logoutUser() {
         return window.location.reload();
     }
 };
+
+export async function addFavourite(film) {
+    console.log(`adding ${film.Title} to favourites...`)
+    const newFavouriteRef = doc(db, `users/${auth.currentUser.uid}/favourites`, film.imdbID);
+    await setDoc(newFavouriteRef, {
+        ...film,
+        addedAt: serverTimestamp(),
+    })
+    console.log(`added ${film.Title} to favourites!`)
+}
