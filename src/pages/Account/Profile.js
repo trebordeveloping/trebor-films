@@ -13,7 +13,6 @@ export async function loader({ request }) {
 export default function Profile() {
 
     const { currentUser, isUserLoggedIn } = useAuth();
-    console.log(currentUser)
 
     return (
         <div className="profile--page">
