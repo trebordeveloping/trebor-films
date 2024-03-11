@@ -9,7 +9,7 @@ import "./Favourites.css";
 import { getFavourites } from "../../api";
 import FilmCard from "../../components/FilmCard";
 import { requireAuth } from "../../utils";
-import { addFavourite } from "../../firebase/auth";
+import { addFavourite, removeFavourite } from "../../firebase/auth";
 
 export async function loader({ request }) {
     await requireAuth(request);
@@ -26,6 +26,7 @@ export default function Favourites() {
             <div key={favourite.imdbID}>
                 <FilmCard key={favourite.imdbID} data={favourite} />
                 <button onClick={() => addFavourite(favourite)}>add to favourites</button>
+                <button onClick={() => removeFavourite(favourite.imdbID)}>remove from favourites</button>
             </div>
         ))
 

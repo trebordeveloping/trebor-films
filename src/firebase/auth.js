@@ -6,6 +6,7 @@ import {
 } from "firebase/auth";
 import {
     collection,
+    deleteDoc,
     doc,
     serverTimestamp,
     setDoc,
@@ -48,4 +49,11 @@ export async function addFavourite(film) {
         addedAt: serverTimestamp(),
     })
     console.log(`added ${film.Title} to favourites!`)
+}
+
+export async function removeFavourite(filmId) {
+    console.log(`removing film with id: ${filmId}`);
+    const favouriteRef = doc(db, `users/${auth.currentUser.uid}/favourites`, filmId);
+    await deleteDoc(favouriteRef);
+    console.log(`deleted film with id: ${filmId}`);
 }
