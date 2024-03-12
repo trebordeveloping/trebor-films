@@ -13,23 +13,20 @@ import { addFavourite, removeFavourite, getFavourites as getFavs } from "../../f
 
 export async function loader({ request }) {
     await requireAuth(request);
-    return defer({favourites: getFavourites()})
+    return defer({favourites: getFavs()})
 }
 
 export default function Favourites() {
 
     const dataPromise = useLoaderData();
-    const [favs, setFavs] = useState(null);
-
-    async function handleGetFavs() {
-        const data = await getFavs();
-        console.log(data)
-        setFavs(data)
-    }
 
     function renderFavouriteElements(favourites) {
 
-        const favouriteElements = favs?.map(favourite => (
+        if (favourites.length === 0) {
+            return <h3>no favourites :(</h3>
+        }
+
+        const favouriteElements = favourites.map(favourite => (
             <div key={favourite.imdbID}>
                 <FilmCard key={favourite.imdbID} data={favourite} />
                 <button onClick={() => addFavourite(favourite)}>add to favourites</button>
@@ -39,7 +36,6 @@ export default function Favourites() {
 
         return (
             <div className="favourites--container">
-                <button onClick={handleGetFavs}>console log favs</button>
                 {favouriteElements}
             </div>
         )

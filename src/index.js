@@ -52,7 +52,7 @@ function App() {
       />
   
       <Route path="account" element={<Account />} loader={accountLoader}>
-        <Route index element={<Favourites />} loader={favouritesLoader} />
+        <Route index element={<Favourites />} errorElement={<Error />} loader={favouritesLoader} />
         <Route path="reviews" element={<Reviews />} loader={reviewsLoader} />
         <Route path="profile" element={<Profile />} loader={profileLoader} />
       </Route>
