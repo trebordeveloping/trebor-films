@@ -8,6 +8,7 @@ import {
     collection,
     deleteDoc,
     doc,
+    getDocs,
     serverTimestamp,
     setDoc,
 } from "firebase/firestore";
@@ -40,6 +41,14 @@ export async function logoutUser() {
         return window.location.reload();
     }
 };
+
+export async function getFavourites() {
+    console.log("Getting favourites");
+    const favouritesCol = collection(db, `users/${auth.currentUser.uid}/favourites`);
+    const querySnapshot = await getDocs(favouritesCol);
+    const favourites = querySnapshot.docs.map(doc => doc.data());
+    return favourites;
+}
 
 export async function addFavourite(film) {
     console.log(`adding ${film.Title} to favourites...`)

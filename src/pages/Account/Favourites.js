@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
     useLoaderData,
     defer,
@@ -9,7 +9,7 @@ import "./Favourites.css";
 import { getFavourites } from "../../api";
 import FilmCard from "../../components/FilmCard";
 import { requireAuth } from "../../utils";
-import { addFavourite, removeFavourite } from "../../firebase/auth";
+import { addFavourite, removeFavourite, getFavourites as getFavs } from "../../firebase/auth";
 
 export async function loader({ request }) {
     await requireAuth(request);
@@ -19,10 +19,17 @@ export async function loader({ request }) {
 export default function Favourites() {
 
     const dataPromise = useLoaderData();
+    const [favs, setFavs] = useState(null);
+
+    async function handleGetFavs() {
+        const data = await getFavs();
+        console.log(data)
+        setFavs(data)
+    }
 
     function renderFavouriteElements(favourites) {
 
-        const favouriteElements = favourites.map(favourite => (
+        const favouriteElements = favs?.map(favourite => (
             <div key={favourite.imdbID}>
                 <FilmCard key={favourite.imdbID} data={favourite} />
                 <button onClick={() => addFavourite(favourite)}>add to favourites</button>
@@ -32,6 +39,7 @@ export default function Favourites() {
 
         return (
             <div className="favourites--container">
+                <button onClick={handleGetFavs}>console log favs</button>
                 {favouriteElements}
             </div>
         )
