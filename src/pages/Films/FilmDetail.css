@@ -3,6 +3,7 @@
     flex-direction: row;
     align-items: flex-start;
     margin-top: 2vh;
+    position: relative;
 }
 
 .detail--poster {
@@ -23,4 +24,36 @@
 .detail--info > h2 {
     font-size: 1rem;
     margin: 0;
+}
+
+.detail--favourites-button {
+    position: absolute;
+    top: 5%;
+    right: 5%;
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.detail--favourites-button:hover {
+    transform: scale(1.1);
+}
+
+.detail--favourites-button:hover::after {
+    content: "Add to favourites";
+    position: absolute;
+    top: -50%; /* Position the tooltip below the element */
+    left: 50%; /* Center the tooltip horizontally */
+    transform: translateX(-50%); /* Adjust horizontally to center */
+    background-color: rgba(105, 105, 105, 0.8); /* Background color of the tooltip */
+    color: #fff; /* Text color of the tooltip */
+    padding: 5px 10px; /* Padding for the tooltip */
+    border-radius: 4px; /* Border radius for the tooltip */
+    font-size: 14px; /* Font size for the tooltip */
+    white-space: nowrap; /* Prevent line breaks in the tooltip */
+}
+
+.detail--favourites-icon.selected {
+    background-color: #FF0000;
 }

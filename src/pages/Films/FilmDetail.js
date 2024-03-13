@@ -1,14 +1,20 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
     Link,
     useLocation,
     useLoaderData,
     defer,
     Await,
+    useSearchParams,
 } from "react-router-dom";
 
 import "./FilmDetail.css";
 import { getFilmById } from "../../api";
+import { addFavourite } from "../../firebase/auth";
+import { useAuth } from "../../contexts/AuthContext";
+import heart from "../../images/heartIcon_black_empty.png";
+import { doc, onSnapshot } from "firebase/firestore";
+import { db } from "../../firebase/firebase-config";
 
 export function loader({ params }) {
     
@@ -22,8 +28,32 @@ export default function FilmDetail() {
     const dataPromise = useLoaderData()
     const location = useLocation();
     const search = location.state?.search || "";
+    const { isUserLoggedIn, currentUser } = useAuth();
+    const [fav, setFav] = useState(false);
+    console.log(location)
+
+    useEffect(() => {
+        
+        const unsub = isUserLoggedIn ?
+            onSnapshot(doc(db, `users/${currentUser.uid}/favourites`, window.location.pathname.substring(7)), (doc) => {
+                console.log("Current data: ", doc.data());
+                if (doc.data()) {
+                    setFav(true);
+                } else {
+                    setFav(false);
+                }
+            })
+            : null;
+        
+        return () => unsub
+    }, [])
+
+    async function handleAddFavourite(film) {
+        await addFavourite(film);
+    }
 
     function renderFilmDetail(film) {
+
         return (
             <>
                 <Link
@@ -49,6 +79,18 @@ export default function FilmDetail() {
                         <h2>Actors: <span style={{fontWeight: 'normal'}}>{film.Actors}</span></h2>
                         <h2>IMDb: <span style={{fontWeight: 'normal'}}>{film.imdbRating}</span></h2>
                         <p>{film.Plot}</p>
+
+                        {isUserLoggedIn && (
+                            <button
+                                className="detail--favourites-button"
+                                onClick={() => handleAddFavourite(film)}
+                            >
+                                <img
+                                    src={heart}
+                                    className={`detail--favourites-icon${fav ? " selected" : ""}`}
+                                ></img>
+                            </button>
+                        )}
                     </div>
                 </div>
                 {/* <p>{JSON.stringify(film)}</p> */}

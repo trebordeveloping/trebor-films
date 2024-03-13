@@ -29,7 +29,6 @@ export default function Favourites() {
         const favouriteElements = favourites.map(favourite => (
             <div key={favourite.imdbID}>
                 <FilmCard key={favourite.imdbID} data={favourite} />
-                <button onClick={() => addFavourite(favourite)}>add to favourites</button>
                 <button onClick={() => removeFavourite(favourite.imdbID)}>remove from favourites</button>
             </div>
         ))
