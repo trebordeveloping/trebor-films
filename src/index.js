@@ -16,7 +16,7 @@ import FilmDetail, { loader as filmDetailLoader } from './pages/Films/FilmDetail
 import Account, { loader as accountLoader } from "./pages/Account/Account";
 import Favourites, { loader as favouritesLoader } from './pages/Account/Favourites';
 import Reviews, { loader as reviewsLoader } from './pages/Account/Reviews';
-import Profile, { loader as profileLoader } from './pages/Account/Profile';
+import Profile, { loader as profileLoader, action as profileAction } from './pages/Account/Profile';
 import Login, { loader as loginLoader, action as loginAction } from './pages/Login/Login';
 import Register, { action as registerAction } from './pages/Login/Register';
 import Error from './components/Error';
@@ -55,7 +55,7 @@ function App() {
         <Route path="favourites" element={<Favourites />} errorElement={<Error />} loader={favouritesLoader} />
         <Route path="favourites/:id" element={<FilmDetail />} errorElement={<Error />} loader={filmDetailLoader} />
         <Route path="reviews" element={<Reviews />} loader={reviewsLoader} />
-        <Route index element={<Profile />} loader={profileLoader} />
+        <Route index element={<Profile />} loader={profileLoader} action={profileAction} />
       </Route>
   
     </Route>

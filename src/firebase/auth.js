@@ -3,6 +3,7 @@ import {
     createUserWithEmailAndPassword,
     signInWithEmailAndPassword,
     signOut,
+    updateProfile,
 } from "firebase/auth";
 import {
     collection,
@@ -41,6 +42,10 @@ export async function logoutUser() {
         return window.location.reload();
     }
 };
+
+export async function updateUser(data) {
+    return await updateProfile(auth.currentUser, data);
+}
 
 export async function getFavourites() {
     console.log("Getting favourites");
