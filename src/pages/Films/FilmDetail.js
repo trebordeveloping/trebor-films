@@ -5,6 +5,7 @@ import {
     useLoaderData,
     defer,
     Await,
+    useParams,
 } from "react-router-dom";
 
 import "./FilmDetail.css";
@@ -28,14 +29,14 @@ export default function FilmDetail() {
     const location = useLocation();
     const search = location.state?.search || "";
     const prevPath = location.state?.prevPath;
+    const params = useParams();
     const { isUserLoggedIn, currentUser } = useAuth();
     const [fav, setFav] = useState(false);
 
-
     useEffect(() => {
-        
+
         const unsub = isUserLoggedIn ?
-            onSnapshot(doc(db, `users/${currentUser.uid}/favourites`, window.location.pathname.substring(7)), (doc) => {
+            onSnapshot(doc(db, `users/${currentUser.uid}/favourites`, params.id), (doc) => {
                 console.log("Current data: ", doc.data());
                 if (doc.data()) {
                     setFav(true);
