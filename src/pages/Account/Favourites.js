@@ -17,6 +17,13 @@ export async function loader({ request }) {
     return defer({favourites: getFavs()})
 }
 
+function sortByDates(films) {
+    const sortedFilms = films.sort(
+        (a, b) => b.addedAt.toDate() - a.addedAt.toDate()
+    );
+    return sortedFilms;
+}
+
 export default function Favourites() {
 
     const dataPromise = useLoaderData();
@@ -30,7 +37,9 @@ export default function Favourites() {
             return <h3>no favourites :(</h3>
         }
 
-        const favouriteElements = favourites.map(favourite => (
+        const sortedFavourites = sortByDates(favourites);
+
+        const favouriteElements = sortedFavourites.map(favourite => (
             <Link
                 key={favourite.imdbID}
                 to={favourite.imdbID}

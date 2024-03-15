@@ -10,7 +10,7 @@ import {
 
 import "./FilmDetail.css";
 import { getFilmById } from "../../api";
-import { addFavourite } from "../../firebase/auth";
+import { addFavourite, removeFavourite } from "../../firebase/auth";
 import { useAuth } from "../../contexts/AuthContext";
 import heart from "../../images/heartIcon_black_empty.png";
 import { doc, onSnapshot } from "firebase/firestore";
@@ -49,8 +49,12 @@ export default function FilmDetail() {
         return () => unsub
     }, [])
 
-    async function handleAddFavourite(film) {
-        await addFavourite(film);
+    async function handleFavourite(film) {
+        if (fav) {
+            await removeFavourite(film.imdbID);
+        } else {
+            await addFavourite(film);
+        }
     }
 
     function renderFilmDetail(film) {
@@ -84,7 +88,7 @@ export default function FilmDetail() {
                         {isUserLoggedIn && (
                             <button
                                 className="detail--favourites-button"
-                                onClick={() => handleAddFavourite(film)}
+                                onClick={() => handleFavourite(film)}
                             >
                                 <img
                                     src={heart}
