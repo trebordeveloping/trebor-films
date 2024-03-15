@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import {
     useLoaderData,
     defer,
-    Await
+    Await,
+    Link,
 } from "react-router-dom"
 
 import "./Favourites.css";
@@ -20,6 +21,9 @@ export default function Favourites() {
 
     const dataPromise = useLoaderData();
 
+    console.log("new url", (new URL(window.location.href)));
+    console.log("pathname:", window.location.pathname);
+
     function renderFavouriteElements(favourites) {
 
         if (favourites.length === 0) {
@@ -27,10 +31,15 @@ export default function Favourites() {
         }
 
         const favouriteElements = favourites.map(favourite => (
-            <div key={favourite.imdbID}>
+            <Link
+                key={favourite.imdbID}
+                to={favourite.imdbID}
+                state={{
+                    prevPath: "favourites"
+                }}
+            >
                 <FilmCard key={favourite.imdbID} data={favourite} />
-                <button onClick={() => removeFavourite(favourite.imdbID)}>remove from favourites</button>
-            </div>
+            </Link>
         ))
 
         return (

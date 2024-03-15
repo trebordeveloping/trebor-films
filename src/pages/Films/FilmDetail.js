@@ -5,7 +5,6 @@ import {
     useLoaderData,
     defer,
     Await,
-    useSearchParams,
 } from "react-router-dom";
 
 import "./FilmDetail.css";
@@ -28,9 +27,10 @@ export default function FilmDetail() {
     const dataPromise = useLoaderData()
     const location = useLocation();
     const search = location.state?.search || "";
+    const prevPath = location.state?.prevPath;
     const { isUserLoggedIn, currentUser } = useAuth();
     const [fav, setFav] = useState(false);
-    console.log(location)
+
 
     useEffect(() => {
         
@@ -60,7 +60,7 @@ export default function FilmDetail() {
                     to={`..${search}`}
                     relative="path"
                     >
-                    &larr; Back to films
+                    &larr; Back to {prevPath}
                 </Link>
                 <div className="detail--container">
                     <img src={film.Poster} alt="Film poster" className="detail--poster"></img>

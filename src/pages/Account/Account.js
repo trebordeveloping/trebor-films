@@ -30,8 +30,7 @@ export default function Account() {
         <>
             <nav style={{marginBottom: '10px'}}>
                 <NavLink
-                    to="."
-                    end
+                    to="favourites"
                     style={({ isActive }) => isActive ? activeStyle : null}
                 >
                     Favourites
@@ -45,7 +44,8 @@ export default function Account() {
                 </NavLink>
 
                 <NavLink
-                    to="profile"
+                    to="."
+                    end
                     style={({ isActive }) => isActive ? activeStyle : null}
                 >
                     Profile

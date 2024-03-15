@@ -52,9 +52,10 @@ function App() {
       />
   
       <Route path="account" element={<Account />} loader={accountLoader}>
-        <Route index element={<Favourites />} errorElement={<Error />} loader={favouritesLoader} />
+        <Route path="favourites" element={<Favourites />} errorElement={<Error />} loader={favouritesLoader} />
+        <Route path="favourites/:id" element={<FilmDetail />} errorElement={<Error />} loader={filmDetailLoader} />
         <Route path="reviews" element={<Reviews />} loader={reviewsLoader} />
-        <Route path="profile" element={<Profile />} loader={profileLoader} />
+        <Route index element={<Profile />} loader={profileLoader} />
       </Route>
   
     </Route>

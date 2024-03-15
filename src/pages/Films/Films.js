@@ -26,9 +26,8 @@ export function loader({ request }) {
 
 export default function Films() {
 
-    const [searchParams] = useSearchParams();
     const dataPromise = useLoaderData();
-
+    const [searchParams, setSearchParams] = useSearchParams();
     
     function renderFilmElements(searchResult) {
         if (searchResult === null)
@@ -44,7 +43,8 @@ export default function Films() {
                 key={film.imdbID}
                 to={film.imdbID}
                 state={{
-                    search: `?${searchParams.toString()}`,
+                    prevPath: "films",
+                    search: `?${searchParams.toString()}`
                 }}
                 >
                 <FilmCard data={film} />
