@@ -1,9 +1,5 @@
-import React, { useRef, useState } from "react";
-import {
-    Form,
-    redirect,
-    useNavigation,
-} from "react-router-dom";
+import React, { useState } from "react";
+
 
 import avatar from "../../images/avatar.png";
 import "./Profile.css";
@@ -39,29 +35,15 @@ export async function action({ request }) {
 export default function Profile() {
 
     const { currentUser, isUserLoggedIn } = useAuth();
-    const navigation = useNavigation();
 
-    function resetEdit() {
-        return ({
-            edit: false,
-            name: "",
-            photoURL: "",
-        })
-    }
+    const [edit, setEdit] = useState(false);
 
-    const [editProfile, setEditProfile] = useState(resetEdit());
-    function handleChange(event) {
-        setEditProfile(prev => ({
-            ...prev,
-            [event.target.name]: event.target.value,
-        }))
-    }
     function startEdit() {
-        setEditProfile(prev => ({...prev, edit: !prev.edit}));
+        setEdit(true);
     }
     function cancelEdit(event) {
         event.preventDefault();
-        setEditProfile(prev => (resetEdit()));
+        setEdit(false);
         console.log("Cancelled!")
     }
 
@@ -85,10 +67,10 @@ export default function Profile() {
                     <p style={{color: 'red'}}>{isUserLoggedIn ? "Logged in" : "Not logged in"}</p>
                     <button
                         onClick={startEdit}
-                        disabled={editProfile.edit}
+                        disabled={edit}
                     >Edit Profile</button>
                 </section>
-                {editProfile.edit && (
+                {edit && (
                     <EditProfile cancelEdit={cancelEdit} />
                 )}
             </div>
