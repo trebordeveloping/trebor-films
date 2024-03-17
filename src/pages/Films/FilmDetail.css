@@ -26,10 +26,16 @@
     margin: 0;
 }
 
-.detail--favourites-button {
+.detail--icons {
     position: absolute;
     top: 5%;
     right: 5%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.detail--favourites-button {
     background: none;
     border: none;
     cursor: pointer;
@@ -43,8 +49,8 @@
 .detail--favourites-button:hover::after {
     content: "Add to favourites";
     position: absolute;
-    top: -50%; /* Position the tooltip below the element */
-    left: 50%; /* Center the tooltip horizontally */
+    top: 15%;
+    left: -100%;
     transform: translateX(-50%); /* Adjust horizontally to center */
     background-color: rgba(105, 105, 105, 0.8); /* Background color of the tooltip */
     color: #fff; /* Text color of the tooltip */
@@ -56,4 +62,73 @@
 
 .detail--favourites-icon.selected {
     background-color: #FF0000;
+}
+
+.detail--review-button {
+    cursor: pointer;
+    border: none;
+    background: none;
+    transition: transform 0.3s ease;
+}
+
+.detail--review-button:hover {
+    transform: scale(1.1);
+}
+
+.detail--review-button:hover::after {
+    content: "New review";
+    position: absolute;
+    top: 20%;
+    left: -80%;
+    transform: translateX(-50%); /* Adjust horizontally to center */
+    background-color: rgba(105, 105, 105, 0.8); /* Background color of the tooltip */
+    color: #fff; /* Text color of the tooltip */
+    padding: 5px 10px; /* Padding for the tooltip */
+    border-radius: 4px; /* Border radius for the tooltip */
+    font-size: 14px; /* Font size for the tooltip */
+    white-space: nowrap; /* Prevent line breaks in the tooltip */
+}
+
+.detail--review-icon {
+    width: 50px;
+}
+
+.detail--review--page {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(105, 105, 105, 0.8);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.detail--review--container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    padding: 2%;
+    background-color: #1E1E1E;
+    border-radius: 5px;
+}
+
+.detail--review--rating {
+    display: flex;
+    flex-direction: row;
+}
+
+.detail--review--textarea {
+    width: 40vw;
+    height: 10vh;
+}
+
+.detail--review--buttons {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
 }

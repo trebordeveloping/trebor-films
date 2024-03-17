@@ -12,7 +12,7 @@ import Layout from "./components/Layout";
 import Home, { action as homeAction} from "./pages/Home";
 import About from './pages/About';
 import Films, { loader as filmsLoader } from './pages/Films/Films';
-import FilmDetail, { loader as filmDetailLoader } from './pages/Films/FilmDetail';
+import FilmDetail, { loader as filmDetailLoader, action as filmDetailAction } from './pages/Films/FilmDetail';
 import Account, { loader as accountLoader } from "./pages/Account/Account";
 import Favourites, { loader as favouritesLoader } from './pages/Account/Favourites';
 import Reviews, { loader as reviewsLoader } from './pages/Account/Reviews';
@@ -40,6 +40,7 @@ function App() {
         path="films/:id"
         element={<FilmDetail />}
         loader={filmDetailLoader}
+        action={filmDetailAction}
         errorElement={<Error />}
       />
   

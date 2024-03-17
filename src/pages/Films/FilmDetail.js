@@ -13,14 +13,37 @@ import { getFilmById } from "../../api";
 import { addFavourite, removeFavourite } from "../../firebase/auth";
 import { useAuth } from "../../contexts/AuthContext";
 import heart from "../../images/heartIcon_black_empty.png";
+import addIcon from "../../images/addIcon_white.png";
 import { doc, onSnapshot } from "firebase/firestore";
 import { db } from "../../firebase/firebase-config";
+import NewReview from "./NewReview";
 
 export function loader({ params }) {
     
     const filmId = params.id;
     
     return defer({ film: getFilmById(filmId)})
+}
+
+export async function action({ request }) {
+    const formData = await request.formData();
+    const rating = formData.get("rating");
+    const review = formData.get("review");
+    let reviewData;
+    if (review) {
+        reviewData = { rating, review };
+    } else {
+        reviewData = { rating };
+    }
+
+    try {
+        console.log(reviewData);
+        window.location.reload();
+        return null;
+    } catch(err) {
+        console.log(err);
+        return err.message;
+    }
 }
 
 export default function FilmDetail() {
@@ -86,18 +109,34 @@ export default function FilmDetail() {
                         <h2>IMDb: <span style={{fontWeight: 'normal'}}>{film.imdbRating}</span></h2>
                         <p>{film.Plot}</p>
 
-                        {isUserLoggedIn && (
-                            <button
+                        <section className="detail--icons">
+                            {isUserLoggedIn && (
+                                <button
                                 className="detail--favourites-button"
                                 onClick={() => handleFavourite(film)}
+                                >
+                                    <img
+                                        src={heart}
+                                        className={`detail--favourites-icon${fav ? " selected" : ""}`}
+                                        ></img>
+                                </button>
+                            )}
+                            <button
+                                className="detail--review-button"
+                                onClick={() => setRev(true)}
                             >
                                 <img
-                                    src={heart}
-                                    className={`detail--favourites-icon${fav ? " selected" : ""}`}
+                                    src={addIcon}
+                                    className="detail--review-icon"
                                 ></img>
                             </button>
-                        )}
+                        </section>
                     </div>
+                    {rev && (
+                        <div className="detail--review--page">
+                            <NewReview cancelReview={() => setRev(false)} />
+                        </div>
+                    )}
                 </div>
                 {/* <p>{JSON.stringify(film)}</p> */}
             </>
