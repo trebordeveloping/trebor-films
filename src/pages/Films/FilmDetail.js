@@ -32,6 +32,7 @@ export default function FilmDetail() {
     const params = useParams();
     const { isUserLoggedIn, currentUser } = useAuth();
     const [fav, setFav] = useState(false);
+    const [rev, setRev] = useState(false);
 
     useEffect(() => {
 

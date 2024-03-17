@@ -71,7 +71,9 @@ export default function Profile() {
                     >Edit Profile</button>
                 </section>
                 {edit && (
-                    <EditProfile cancelEdit={cancelEdit} />
+                    <div className="profile--edit-page">
+                        <EditProfile cancelEdit={cancelEdit} />
+                    </div>
                 )}
             </div>
 
