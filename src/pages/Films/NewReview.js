@@ -8,6 +8,9 @@ export default function NewReview(props) {
 
     const navigation = useNavigation();
 
+    const { imdbID, Title, Poster, Year } = props.film;
+    const film = { imdbID, Title, Poster, Year };
+
     const [review, setReview] = useState({
         rating: 0,
         review: "",
@@ -23,7 +26,7 @@ export default function NewReview(props) {
 
     function cancelReview(event) {
         event.preventDefault();
-        props.cancelReview();
+        props.setRev(false);
     }
 
     return (
@@ -33,6 +36,11 @@ export default function NewReview(props) {
             replace
         >
             <h1>Your review</h1>
+            <input
+                type="hidden"
+                name="film"
+                value={JSON.stringify(film)}
+            />
             <section className="detail--review--rating">
                 <input
                     name="rating"

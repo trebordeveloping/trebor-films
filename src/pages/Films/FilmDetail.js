@@ -27,15 +27,18 @@ export function loader({ params }) {
 
 export async function action({ request, params }) {
     const formData = await request.formData();
+    const film = JSON.parse(formData.get("film"));
     const rating = formData.get("rating");
     const review = formData.get("review");
     let reviewData = {
-        imdbID: params.id,
+        film,
         rating,
     };
     if (review) {
         reviewData = { ...reviewData, review };
     }
+
+    console.log(reviewData)
 
     try {
         await addReview(reviewData);
@@ -135,7 +138,7 @@ export default function FilmDetail() {
                     </div>
                     {rev && (
                         <div className="detail--review--page">
-                            <NewReview cancelReview={() => setRev(false)} />
+                            <NewReview setRev={setRev} film={film} />
                         </div>
                     )}
                 </div>
