@@ -10,7 +10,7 @@ import {
 
 import "./FilmDetail.css";
 import { getFilmById } from "../../api";
-import { addFavourite, removeFavourite } from "../../firebase/auth";
+import { addFavourite, addReview, removeFavourite } from "../../firebase/auth";
 import { useAuth } from "../../contexts/AuthContext";
 import heart from "../../images/heartIcon_black_empty.png";
 import addIcon from "../../images/addIcon_white.png";
@@ -25,19 +25,20 @@ export function loader({ params }) {
     return defer({ film: getFilmById(filmId)})
 }
 
-export async function action({ request }) {
+export async function action({ request, params }) {
     const formData = await request.formData();
     const rating = formData.get("rating");
     const review = formData.get("review");
-    let reviewData;
+    let reviewData = {
+        imdbID: params.id,
+        rating,
+    };
     if (review) {
-        reviewData = { rating, review };
-    } else {
-        reviewData = { rating };
+        reviewData = { ...reviewData, review };
     }
 
     try {
-        console.log(reviewData);
+        await addReview(reviewData);
         window.location.reload();
         return null;
     } catch(err) {

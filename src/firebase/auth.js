@@ -6,6 +6,7 @@ import {
     updateProfile,
 } from "firebase/auth";
 import {
+    addDoc,
     collection,
     deleteDoc,
     doc,
@@ -70,4 +71,14 @@ export async function removeFavourite(filmId) {
     const favouriteRef = doc(db, `users/${auth.currentUser.uid}/favourites`, filmId);
     await deleteDoc(favouriteRef);
     console.log(`deleted film with id: ${filmId}`);
+}
+
+export async function addReview(data) {
+    console.log("Logging review:", data);
+    const reviewsColRef = collection(db, "users", auth.currentUser.uid, "reviews");
+    await addDoc(reviewsColRef, {
+        ...data,
+        createdAt: serverTimestamp(),
+    });
+    console.log("Review logged!")
 }
