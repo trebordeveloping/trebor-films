@@ -5,7 +5,8 @@ import {
     Await,
 } from "react-router-dom";
 
-import { getReviews } from "../../api";
+// import { getReviews } from "../../api";
+import { getReviews } from "../../firebase/auth";
 import Review from "../../components/Review";
 import { requireAuth } from "../../utils";
 

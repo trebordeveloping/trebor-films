@@ -73,6 +73,14 @@ export async function removeFavourite(filmId) {
     console.log(`deleted film with id: ${filmId}`);
 }
 
+export async function getReviews() {
+    console.log("Getting reviews");
+    const reviewsColRef = collection(db, "users", auth.currentUser.uid, "reviews");
+    const querySnapshot = await getDocs(reviewsColRef);
+    const reviews = querySnapshot.docs.map(doc => doc.data());
+    return reviews;
+}
+
 export async function addReview(data) {
     console.log("Logging review:", data);
     const reviewsColRef = collection(db, "users", auth.currentUser.uid, "reviews");
