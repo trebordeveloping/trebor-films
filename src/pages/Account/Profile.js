@@ -11,6 +11,7 @@ import { useAuth } from "../../contexts/AuthContext";
 import { requireAuth } from "../../utils";
 import { updateUser } from "../../firebase/auth";
 import { auth } from "../../firebase/firebase-config";
+import EditProfile from "./EditProfile";
 
 export async function loader({ request }) {
     await requireAuth(request);
@@ -87,50 +88,10 @@ export default function Profile() {
                         disabled={editProfile.edit}
                     >Edit Profile</button>
                 </section>
+                {editProfile.edit && (
+                    <EditProfile cancelEdit={cancelEdit} />
+                )}
             </div>
-
-            {editProfile.edit && (
-                <Form
-                    method="post"
-                    className="profile--edit"
-                    replace
-                >
-                    <pre>{JSON.stringify(editProfile)}</pre>
-                    <input
-                        name="name"
-                        type="text"
-                        placeholder="Name..."
-                        value={editProfile.name}
-                        onChange={handleChange}
-                    />
-                    <input
-                        name="photoURL"
-                        type="text"
-                        placeholder="Photo URL..."
-                        value={editProfile.photoURL}
-                        onChange={handleChange}
-                    />
-                    
-                    <section>
-                        <button
-                            disabled={
-                                (navigation.state === "submitting") ||
-                                (!editProfile.name && !editProfile.photoURL)
-                            }
-                            >
-                            {navigation.state === "submitting"
-                                ? "Updating ..."
-                                : "Save"
-                            }
-                        </button>
-                        <button
-                            onClick={cancelEdit}
-                        >
-                            Cancel
-                        </button>
-                    </section>
-                </Form>
-            )}
 
         </div>
     )
