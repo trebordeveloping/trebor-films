@@ -15,30 +15,39 @@ export async function loader({ request }) {
     return defer({reviews: getReviews()})
 }
 
+function sortByDates(items) {
+    const sortedItems = items.sort(
+        (a, b) => b.createdAt.toDate() - a.createdAt.toDate()
+    );
+    return sortedItems;
+}
+
 export default function Reviews() {
 
     const dataPromise = useLoaderData();
     
     function renderReviewElements(reviews) {
 
-        const reviewElements = reviews.map(review => (
+        const sortedReviews = sortByDates(reviews);
+
+        const reviewElements = sortedReviews.map(review => (
             <Review key={review.id} data={review} />
         ))
 
         return (
-            <>
+            <div style={{display: 'flex', flexDirection: 'column', gap: '1rem'}}>
                 {reviewElements}
-            </>
+            </div>
         )
     }
 
     return (
         <>
-        <React.Suspense fallback={<h3>Loading reviews...</h3>}>
-            <Await resolve={dataPromise.reviews}>
-                {renderReviewElements}
-            </Await>
-        </React.Suspense>
+            <React.Suspense fallback={<h3>Loading reviews...</h3>}>
+                <Await resolve={dataPromise.reviews}>
+                    {renderReviewElements}
+                </Await>
+            </React.Suspense>
         </>
     )
 }

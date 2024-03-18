@@ -54,7 +54,13 @@ function App() {
   
       <Route path="account" element={<Account />} loader={accountLoader}>
         <Route path="favourites" element={<Favourites />} errorElement={<Error />} loader={favouritesLoader} />
-        <Route path="favourites/:id" element={<FilmDetail />} errorElement={<Error />} loader={filmDetailLoader} />
+        <Route
+          path="favourites/:id"
+          element={<FilmDetail />}
+          errorElement={<Error />}
+          loader={filmDetailLoader}
+          action={filmDetailAction}
+        />
         <Route path="reviews" element={<Reviews />} loader={reviewsLoader} />
         <Route index element={<Profile />} loader={profileLoader} action={profileAction} />
       </Route>

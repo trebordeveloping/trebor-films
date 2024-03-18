@@ -77,7 +77,10 @@ export async function getReviews() {
     console.log("Getting reviews");
     const reviewsColRef = collection(db, "users", auth.currentUser.uid, "reviews");
     const querySnapshot = await getDocs(reviewsColRef);
-    const reviews = querySnapshot.docs.map(doc => doc.data());
+    const reviews = querySnapshot.docs.map(doc => ({
+        id: doc.id,
+        ...doc.data(),
+    }));
     return reviews;
 }
 
